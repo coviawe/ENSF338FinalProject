@@ -144,7 +144,7 @@ public class BST {
             }
             successor.setLeft(curr.getLeft());
         }
-        }
+    }
 
 // helper method to get the successor of a given node
     private TNode getSuccessor(TNode node) {
@@ -164,4 +164,5 @@ public class BST {
         }
     
         return successor;
+    }
 }
