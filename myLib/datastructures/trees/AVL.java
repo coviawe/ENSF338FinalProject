@@ -64,6 +64,16 @@ public class AVL extends BST {
         return left;
     }
 
+    private int height(TNode node) {
+        if (node == null) {
+            return 0;
+        } else {
+            int leftHeight = height(node.getLeft());
+            int rightHeight = height(node.getRight());
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
+
     @Override
     public void insert(int val) {
         super.insert(val);
