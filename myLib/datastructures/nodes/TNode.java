@@ -1,73 +1,72 @@
-package myLib.datastructures.nodes;
-
 public class TNode {
     private int data;
     private TNode left;
     private TNode right;
     private TNode parent;
     private int balance;
-
+    
     public TNode() {
-        data = 0;
-        left = null;
-        right = null;
-        parent = null;
-        balance = 0;
+        this.data = 0;
+        this.left = null;
+        this.right = null;
+        this.parent = null;
+        this.balance = 0;
     }
-
-    public TNode(int data, int balance, TNode P, TNode L, TNode R) {
+    
+    public TNode(int data, int balance, TNode parent, TNode left, TNode right) {
         this.data = data;
+        this.left = left;
+        this.right = right;
+        this.parent = parent;
         this.balance = balance;
-        parent = P;
-        left = L;
-        right = R;
     }
-
-    public void setData(int data) {
-        this.data = data;
-    }
-
+    
     public int getData() {
         return data;
     }
-
-    public void setLeft(TNode left) {
-        this.left = left;
+    
+    public void setData(int data) {
+        this.data = data;
     }
-
+    
     public TNode getLeft() {
         return left;
     }
-
-    public void setRight(TNode right) {
-        this.right = right;
+    
+    public void setLeft(TNode left) {
+        this.left = left;
     }
-
+    
     public TNode getRight() {
         return right;
     }
-
-    public void setParent(TNode parent) {
-        this.parent = parent;
+    
+    public void setRight(TNode right) {
+        this.right = right;
     }
-
+    
     public TNode getParent() {
         return parent;
     }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
+    
+    public void setParent(TNode parent) {
+        this.parent = parent;
     }
-
+    
     public int getBalance() {
         return balance;
     }
-
-    public void print() {
-        System.out.println("Node: " + data + " Balance: " + balance);
+    
+    public void setBalance(int balance) {
+        this.balance = balance;
     }
-
+    
+    public void print() {
+        System.out.println("Data: " + this.data + ", Balance: " + this.balance);
+    }
+    
+    @Override
     public String toString() {
-        return String.valueOf(data);
+        return Integer.toString(this.data);
     }
 }
