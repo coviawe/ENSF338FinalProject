@@ -21,6 +21,31 @@ public class AVL extends BST {
         }
     }
 
+    
+
+    @Override
+    public void setRoot(TNode root) {
+        if (root.getLeft() != null || root.getRight() != null) {
+            // Perform the same operations as in the overloaded constructor
+            TNode newRoot = new TNode(root.getData(), height(root), null, null, null);
+            if (root.getLeft() != null) {
+                TNode newLeft = new TNode(root.getLeft().getData(), height(root.getLeft()), null, null, newRoot);
+                newRoot.setLeft(newLeft);
+            }
+            if (root.getRight() != null) {
+                TNode newRight = new TNode(root.getRight().getData(), height(root.getRight()), null, null, newRoot);
+                newRoot.setRight(newRight);
+            }
+            root = newRoot;
+        }
+        super.setRoot(root);
+    }
+
+    @Override
+    public TNode getRoot() {
+        return super.getRoot();
+    }
+
     private TNode balance(TNode node) {
         if (node == null) {
             return null;
@@ -154,11 +179,13 @@ public class AVL extends BST {
 
     public static void main(String[] args) {
         AVL avl = new AVL();
+        TNode test = new TNode();
         
         // Insert some values
         avl.insert(5);
         avl.insert(3);
         avl.insert(1);
+        avl.insert(test);
         avl.insert(4);
         avl.insert(7);
         avl.insert(6);
@@ -199,6 +226,15 @@ public class AVL extends BST {
         System.out.println("AVL tree after deletions (printBF method):");
         avl.printBF();
         
-        
+        System.out.println("Now clearing data structure");
+        avl.delete(5);
+        avl.delete(3);
+        avl.delete(1);
+        avl.delete(4);
+        avl.delete(0);
+        avl.delete(6);
+        avl.delete(9);
+        System.out.println("Data structure cleared");
+        avl.printInOrder();
     }
 }
