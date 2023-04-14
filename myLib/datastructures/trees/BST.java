@@ -241,13 +241,13 @@ public class BST {
         
          // Print the tree
         System.out.println("BST tree after insertions (printInOrder method):");
-        avl.printInOrder();
+        bst.printInOrder();
         System.out.println("BST tree after insertions (printBF method):");
-        avl.printBF();
+        bst.printBF();
 
         System.out.println("Searching for Node with value of 7");
         //Check if node 7 exists
-        TNode result = avl.search(7);
+        TNode result = bst.search(7);
         if (result != null) {
             System.out.println("Found node with value " + result.getData() + " in BST tree.");
         } else {
@@ -257,11 +257,11 @@ public class BST {
 
         System.out.println("Deleting Node with value of 7");
         // Delete a value
-        avl.delete(7);
+        bst.delete(7);
 
         System.out.println("Searching for Node with value of 7 again");
 
-        result = avl.search(7);
+        result = bst.search(7);
         if (result != null) {
             System.out.println("Found node with value " + result.getData() + " in BST tree.");
         } else {
@@ -270,9 +270,9 @@ public class BST {
         
         // Print the tree
         System.out.println("BST tree after deletions (printInOrder method):");
-        avl.printInOrder();
+        bst.printInOrder();
         System.out.println("BST tree after deletions (printBF method):");
-        avl.printBF();
+        bst.printBF();
         
     }
 }
