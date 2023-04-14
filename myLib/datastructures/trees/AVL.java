@@ -1,6 +1,10 @@
 package myLib.datastructures.trees;
 import myLib.datastructures.nodes.TNode;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
+
 public class AVL extends BST {
     public AVL() {
         super();
@@ -95,8 +99,9 @@ public class AVL extends BST {
         this.root = balance(this.root);
     }
 
-    public void printTree() {
+    public void printInOrder() {
         inOrderTraversal(root);
+        System.out.println();
     }
 
     private void inOrderTraversal(TNode node) {
@@ -106,6 +111,29 @@ public class AVL extends BST {
             inOrderTraversal(node.getRight());
         }
     }
+
+    public void printBF() {
+        if (root == null) {
+            return;
+        }
+        Queue<TNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                TNode currNode = queue.poll();
+                System.out.print(currNode.getData() + " ");
+                if (currNode.getLeft() != null) {
+                    queue.add(currNode.getLeft());
+                }
+                if (currNode.getRight() != null) {
+                    queue.add(currNode.getRight());
+                }
+            }
+            System.out.println();
+        }
+    }
+
 
     
    
@@ -122,16 +150,20 @@ public class AVL extends BST {
         avl.insert(6);
         avl.insert(9);
         
-        // Print the tree
-        System.out.println("AVL tree after insertions:");
-        avl.printTree();
+         // Print the tree
+        System.out.println("BST tree after insertions (printInOrder method):");
+        avl.printInOrder();
+        System.out.println("BST tree after insertions (printBF method):");
+        avl.printBF();
         
         // Delete a value
         avl.delete(7);
         
         // Print the tree
-        System.out.println("AVL tree after deletion:");
-        avl.printTree();
+        System.out.println("BST tree after deletions (printInOrder method):");
+        avl.printInOrder();
+        System.out.println("BST tree after deletions (printBF method):");
+        avl.printBF();
         
         
     }
