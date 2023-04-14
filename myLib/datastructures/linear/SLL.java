@@ -1,4 +1,5 @@
-// package myLib.datastructures.linear;
+package myLib.datastructures.linear;
+import myLib.datastructures.nodes.SNode;
 
 public class SLL {
     protected SNode head;
@@ -169,7 +170,6 @@ public class SLL {
         }
     }
     
-
     public boolean isSorted(){
         if (head == null || head.getNext() == null){
             return true;
@@ -182,19 +182,21 @@ public class SLL {
             current = current.getNext();
             }
         return true;
-        //Check this later
     }
 
     public void clear(){
         head = null;
         tail = null;
         size = 0;
-        //Check this later
     }
 
     public void print(){
         System.out.println("List length: " + size);
-
+        if (head == null){
+            System.out.println("List is empty.");
+            return;
+        }
+        
         if (isSorted()){
             System.out.println("List is sorted.");
         }
@@ -209,6 +211,90 @@ public class SLL {
             current = current.getNext();
         }
         System.out.println();
+    }
 
+    // Main method for testing our SLL class
+    public static void main(String[] args) {
+        // Create a new empty list
+        System.out.println("Creating a new empty Singly Linked List...\n");
+        SLL list = new SLL();
+        list.print(); // Output: List length: 0, List is empty.
+        System.out.println();
+
+        // Insert into an empty list
+        System.out.println("Inserting into an empty list...\n");
+        SNode node1 = new SNode(5);
+        list.insert(node1, 1);
+        list.print(); // Output: List length: 1, List is sorted., List content: 5
+        System.out.println();
+
+        // Do a sequence of insertions
+        System.out.println("Making a sequence of insertions...\n");
+        SNode node2 = new SNode(2);
+        SNode node3 = new SNode(8);
+        SNode node4 = new SNode(4);
+        SNode node5 = new SNode(3);
+        
+        list.insertHead(node2);
+        list.print(); // Output: List length: 2, List is sorted., List content: 2 5
+        System.out.println();
+
+        list.insertTail(node3);
+        list.print(); // Output: List length: 3, List is sorted., List content: 2 5 8
+        System.out.println();
+
+        list.sortedInsert(node4);
+        list.print(); // Output: List length: 4, List is sorted., List content: 2 4 5 8
+        System.out.println();
+
+        list.insert(node5, 1);
+        list.print(); //Output List length: 5, List is not sorted., List content: 3 2 4 5 8
+        System.out.println();
+
+        // Fully clear the list by a sequence of deletes
+        System.out.println("Deleting the list...\n");
+        list.delete(node2);
+        list.print(); // Output: List length: 4, List is sorted., List content: 3 4 5 6 8
+        System.out.println();
+
+        list.deleteTail();
+        list.print(); // Output: List length: 3, List is sorted., List content: 3 4 5 6
+        System.out.println();
+
+        list.deleteHead();
+        list.print(); // Output: List length: 2, List is sorted., List content: 4 5 6
+        System.out.println();
+
+        list.delete(node1);
+        list.print(); // Output: List length: 1, List is sorted., List content: 4 6
+        System.out.println();
+
+        list.deleteHead();
+        list.print(); // Output: List length: 0, List is empty. 
+        System.out.println();
+
+        // Do another insert to make sure the list is empty again after clearing it
+        System.out.println("Inserting into an empty list again...\n");
+        SNode node6 = new SNode(3);
+        list.insertHead(node6);
+        list.print(); // Output: List length: 1, List is sorted., List content: 3
+        System.out.println();
+
+        // Searching for a node
+        System.out.println("Updating the list again...\n");
+        SNode node7 = new SNode(7);
+        list.insert(node7, 2);
+        list.print(); // Output: List length: 2, List is sorted., List content: 3 7
+        System.out.println();
+
+        System.out.println("Searching for \"node6\" within the list...\n");
+        int finder = list.search(node7).getData();
+        System.out.println("The search found that node6's data is: " + finder); // Output: 3
+        System.out.println();
+
+        // Checking if the list can be cleared
+        System.out.println("Clearing the list...\n");
+        list.clear();
+        list.print(); // Output: List length: 0, List is empty.
     }
 }

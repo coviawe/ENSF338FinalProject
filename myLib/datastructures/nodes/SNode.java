@@ -1,4 +1,4 @@
-// package myLib.datastructures.nodes;
+package myLib.datastructures.nodes;
 
 public class SNode {
     private int data;
@@ -23,6 +23,5 @@ public class SNode {
     
     public void setNext(SNode next) {
         this.next = next;
-    } 
-    
+    }
 }

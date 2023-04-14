@@ -1,3 +1,6 @@
+package myLib.datastructures.trees;
+import myLib.datastructures.nodes.TNode;
+
 public class AVL extends BST {
     public AVL() {
         super();

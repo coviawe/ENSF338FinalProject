@@ -1,4 +1,5 @@
-// package myLib.datastructures.linear;
+package myLib.datastructures.linear;
+import myLib.datastructures.nodes.DNode;
 
 public class DLL {
     protected DNode head;
@@ -93,6 +94,17 @@ public class DLL {
         node.setPrev(current);
         current.setNext(node);
         size++; 
+    }
+
+    public DNode search(DNode node){
+        DNode current = head;
+        while (current != null){
+            if (current.equals(node)){
+                return current;
+            }
+            current = current.getNext();
+        }
+        return null;
     }
 
     public void deleteHead(){
@@ -192,6 +204,10 @@ public class DLL {
 
     public void print(){
         System.out.println("List length: " + size);
+        if (head == null){
+            System.out.println("List is empty.");
+            return;
+        }
 
         if (isSorted()){
             System.out.println("List is sorted.");
@@ -204,8 +220,93 @@ public class DLL {
         DNode current = head;
         while (current != null){
             System.out.print(current.getData() + " ");
-            current = current.getNext();
+        current = current.getNext();
         }
         System.out.println();
+    }
+
+    // Main method for testing our DLL class
+    public static void main(String[] args){
+        // Create a new empty list
+        System.out.println("Creating a new empty Doubly Linked List...\n");
+        DLL list = new DLL();
+        list.print(); // Output: List length: 0, List is sorted., List content:
+        System.out.println();
+
+        // Insert into an empty list
+        System.out.println("Inserting into an empty list...\n");
+        DNode node1 = new DNode(15);
+        list.insert(node1, 1);
+        list.print(); // Output: List length: 1, List is sorted., List content: 15
+        System.out.println();
+
+        // Do a sequence of insertions
+        System.out.println("Making a sequence of insertions...\n");
+        DNode node2 = new DNode(10);
+        DNode node3 = new DNode(20);
+        DNode node4 = new DNode(7);
+        DNode node5 = new DNode(25);
+
+        list.sortedInsert(node2);
+        list.print(); // Output: List length: 2, List is sorted., List content: 10 15
+        System.out.println();
+
+        list.insert(node3, 1);
+        list.print(); // Output: List length: 3, List is not sorted., List content: 20 10 15
+        System.out.println();
+
+        list.insertHead(node4);
+        list.print(); // Output: List length: 4, List is not sorted., List content: 7 20 10 15
+        System.out.println();
+
+        list.insertTail(node5);
+        list.print(); // Output: List length: 5, List is not sorted., List content: 7 20 10 15 25
+        System.out.println();
+
+        // Fully clear the list by a sequence of deletions
+        System.out.println("Deleting the list...\n");
+        list.delete(node4);
+        list.print(); // Output: List length: 4, List is not sorted., List content: 20 10 15 25
+        System.out.println();
+
+        list.deleteHead();
+        list.print(); // Output: List length: 3, List is sorted., List content: 10 15 25
+        System.out.println();
+
+        list.delete(node2);
+        list.print(); // Output: List length: 2, List is sorted., List content: 15 25
+        System.out.println();
+
+        list.deleteTail();
+        list.print(); // Output: List length: 1, List is sorted., List content: 15
+        System.out.println();
+
+        list.delete(node1);
+        list.print(); // Output: List length: 0, List is sorted., List content:
+        System.out.println();
+
+        // Do another insert to make sure the list is empty again after clearing it
+        System.out.println("Inserting into an empty list again...\n");
+        DNode node6 = new DNode(27);
+        list.insertHead(node6);
+        list.print(); // Output: List length: 1, List is sorted., List content: 27
+        System.out.println();
+
+        // Searching for a node
+        System.out.println("Updating the list again...\n");
+        DNode node7 = new DNode(30);
+        list.insertHead(node7);
+        list.print(); // Output: List length: 2, List is not sorted., List content: 30 27
+        System.out.println();
+
+        System.out.println("Searching for \"node6\" within the list...\n");
+        int finder = list.search(node6).getData();
+        System.out.println("The search found that node6's data is: " + finder);
+        System.out.println();
+
+        // Checking if the lst can be cleared
+        System.out.println("Clearing the list...\n");
+        list.clear();
+        list.print(); // Output: List length: 0, List is sorted., List content: 
     }
 }

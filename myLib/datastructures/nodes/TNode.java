@@ -1,3 +1,5 @@
+package myLib.datastructures.nodes;
+
 public class TNode {
     private int data;
     private TNode left;
