@@ -4,7 +4,6 @@ import myLib.datastructures.nodes.TNode;
 import java.util.Queue;
 import java.util.LinkedList;
 
-
 public class BST {
     protected TNode root;
     
@@ -221,11 +220,6 @@ public class BST {
         }
         return null;
     }
-
-
-
-
-   
 
     public static void main(String[] args) {
         BST bst = new BST();

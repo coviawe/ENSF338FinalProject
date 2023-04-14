@@ -21,8 +21,6 @@ public class AVL extends BST {
         }
     }
 
-    
-
     @Override
     public void setRoot(TNode root) {
         if (root.getLeft() != null || root.getRight() != null) {
@@ -125,6 +123,10 @@ public class AVL extends BST {
     }
 
     public void printInOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
         inOrderTraversal(root);
         System.out.println();
     }
@@ -139,6 +141,7 @@ public class AVL extends BST {
 
     public void printBF() {
         if (root == null) {
+            System.out.println("Tree is empty");
             return;
         }
         Queue<TNode> queue = new LinkedList<>();
@@ -173,68 +176,136 @@ public class AVL extends BST {
         return null;
     }
 
-
-    
-   
-
+    // Main method for testing our AVL tree
     public static void main(String[] args) {
+        // Create a new AVL tree
+        System.out.println("Creating a new AVL tree...\n");
         AVL avl = new AVL();
-        TNode test = new TNode();
+        TNode test = new TNode(); // Should initialize to null
+        System.out.println("The \"printBF\" method says: ");
+        avl.printBF(); // Should print "Tree is empty"
+        System.out.println();
+        System .out.println("The \"printInOrder\" method says: ");
+        avl.printInOrder(); // Should print "Tree is empty"
+        System.out.println();
         
-        // Insert some values
+        // Insert into the empty tree
+        System.out.println("Inserting into the AVL tree...\n");
         avl.insert(5);
+        System.out.println("AVL tree after insertions (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "5"
+        System.out.println();
+        System.out.println("AVL tree after insertions (\"printBF\" method):\n");
+        avl.printBF(); // Should print "5"
+        System.out.println();
+
+        // Do a sequence of insertions
+        System.out.println("Making a sequence of insertions...\n");
+        System.out.println("After the first set of insertions");
         avl.insert(3);
         avl.insert(1);
         avl.insert(test);
+
+        System.out.println("AVL tree after insertions (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "0 1 3 5" 
+        System.out.println();
+        System.out.println("AVL tree after insertions (\"printBF\" method):\n");
+        avl.printBF(); // Should print "3, 1 5, 0"
+        System.out.println();
+
+        System.out.println("After the second set of insertions");
         avl.insert(4);
         avl.insert(7);
         avl.insert(6);
         avl.insert(9);
-        
-         // Print the tree
-        System.out.println("AVL tree after insertions (printInOrder method):");
-        avl.printInOrder();
-        System.out.println("AVL tree after insertions (printBF method):");
-        avl.printBF();
 
-        System.out.println("Searching for Node with value of 7");
-        //Check if node 7 exists
-        TNode result = avl.search(7);
-        if (result != null) {
-            System.out.println("Found node with value " + result.getData() + " in AVL tree.");
-        } else {
-            System.out.println("Node with this value not found in AVL tree.");
-        }
-        
+        System.out.println("AVL tree after insertions (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "0 1 3 4 5 6 7 9"
+        System.out.println();
+        System.out.println("AVL tree after insertions (\"printBF\" method):\n");
+        avl.printBF(); // Should print "3, 1 5, 0 4 7, 6 9"
+        System.out.println();
 
-        System.out.println("Deleting Node with value of 7");
-        // Delete a value
+        // Fully clear the tree by a sequence of deletions
+        System.out.println("Clearing the tree by a sequence of deletions...\n");
+        System.out.println("After the first set of deletions");
         avl.delete(7);
-
-        System.out.println("Searching for Node with value of 7 again");
-
-        result = avl.search(7);
-        if (result != null) {
-            System.out.println("Found node with value " + result.getData() + " in AVL tree.");
-        } else {
-            System.out.println("Node with this value not found in AVL tree.");
-        }
-        
-        // Print the tree
-        System.out.println("AVL tree after deletions (printInOrder method):");
-        avl.printInOrder();
-        System.out.println("AVL tree after deletions (printBF method):");
-        avl.printBF();
-        
-        System.out.println("Now clearing data structure");
         avl.delete(5);
         avl.delete(3);
         avl.delete(1);
+
+        System.out.println("AVL tree after deletions (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "0 4 6 9"
+        System.out.println();
+        System.out.println("AVL tree after deletions (\"printBF\" method):\n");
+        avl.printBF(); // Should print "4, 0 6, 9"
+        System.out.println();
+
+        System.out.println("After the second set of deletions");
         avl.delete(4);
         avl.delete(0);
         avl.delete(6);
         avl.delete(9);
-        System.out.println("Data structure cleared");
-        avl.printInOrder();
+
+        System.out.println("AVL tree after deletions (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "Tree is empty"
+        System.out.println();
+        System.out.println("AVL tree after deletions (\"printBF\" method):\n");
+        avl.printBF(); // Should print "Tree is empty"
+        System.out.println();
+
+        // Do another insert to make sure the tree is empty
+        System.out.println("Inserting into the AVL tree again...\n");
+        TNode test2 = new TNode();
+        test2.setData(100);
+        avl.insert(test2);
+        System.out.println("AVL tree after insertion (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "100"
+        System.out.println();
+        System.out.println("AVL tree after insertion (\"printBF\" method):\n");
+        avl.printBF(); // Should print "100"
+        System.out.println();
+
+        // Search for a value in the tree
+        System.out.println("Updating the tree again...\n");
+        avl.insert(7);
+        System.out.println("AVL tree after insertion (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "7 100"
+        System.out.println();
+        System.out.println("AVL tree after insertion (\"printBF\" method):\n");
+        avl.printBF(); // Should print "100, 7"
+        System.out.println();
+
+        System.out.println("Searching for Node with value of 7...\n");
+        TNode result = avl.search(7); // Should return a node with value 7
+        if (result != null) {
+            System.out.println("Found node with value " + result.getData() + " in AVL tree.");
+        } else {
+            System.out.println("Node with this value not found in AVL tree.");
+        }
+        System.out.println();
+        
+        System.out.println("Deleting Node with value of 7...\n");
+        avl.delete(7);
+        
+        System.out.println("Searching for Node with value of 7 again...\n");
+        result = avl.search(7); // Should return null
+        if (result != null) {
+            System.out.println("Found node with value " + result.getData() + " in AVL tree.");
+        } else {
+            System.out.println("Node with this value not found in AVL tree.");
+        }
+        System.out.println();
+        
+        //Clearing the tree
+        System.out.println("Clearing the tree...\n");
+        avl.delete(100);
+        System.out.println("AVL tree after deletion (\"printInOrder\" method):\n");
+        avl.printInOrder(); // Should print "Tree is empty"
+        System.out.println();
+        System.out.println("AVL tree after deletion (\"printBF\" method):\n");
+        avl.printBF(); // Should print "Tree is empty"
+        System.out.println();
+        System.out.println("The tree has been cleared.");
     }
 }
