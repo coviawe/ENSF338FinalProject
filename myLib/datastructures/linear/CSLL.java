@@ -38,50 +38,73 @@ public class CSLL extends SLL{
 
     @Override
     public void deleteTail(){
-        SNode secondToLast = head;
-        while (secondToLast.getNext() != tail){
-            secondToLast = secondToLast.getNext();
-        }
         super.deleteTail();
-        secondToLast.setNext(head);
+        tail.setNext(head);
     }
 
     @Override
     public void delete(SNode node){
-        SNode prev = head;
-        while (prev.getNext() != node){
-            prev = prev.getNext();
-        }
-        super.delete(node);
-        prev.setNext(node.getNext());
+        // if (head == null){
+        //     System.out.println("The list is empty.");
+        //     return;
+        // }
+
+        // // if (head.getData() == node.getData()){
+        // //     deleteHead();
+        // //     return;
+        // // }
+
+        // // if (tail.getData() == node.getData()){
+        // //     deleteTail();
+        // //     return;
+        // // }
+
+        // SNode current = head;
+        // while (current.getNext() != head && current.getNext().getData() != node.getData()){
+        //     current = current.getNext();
+
+        //     if (current.getNext().getData() == node.getData()){
+        //         current.setNext(current.getNext().getNext());
+        //         size--;
+        //         return;
+        //     }
+        // }
     }
 
     @Override
     public void sortedInsert(SNode node){
-        if (!isSorted()){
-            sort();
-        }
-        if (head == null || node.getData() < head.getData()){
-            insertHead(node);
-            return;
-        }
-        SNode current = head;
-        while (current.getNext() != null && current.getNext().getData() < node.getData()){
-            current = current.getNext();
-        }
-        node.setNext(current.getNext());
-        current.setNext(node);
+        super.sortedInsert(node);
         tail.setNext(head);
-        size++;
+    }
+
+    @Override
+    public void sort(){
+        if (!isSorted()){
+            SNode current = head;
+            SNode next = null;
+            int temp;
+            while (current.getNext() != head){
+                next = current.getNext();
+                while (next != head){
+                    if (current.getData() > next.getData()){
+                        temp = current.getData();
+                        current.setData(next.getData());
+                        next.setData(temp);
+                    }
+                    next = next.getNext();
+                }
+                current = current.getNext();
+            }
+        } 
     }
 
     @Override
     public boolean isSorted(){
-        if (head == null || head.getNext() == head){
+        if (head == null || head.getNext() == null){
             return true;
         }
         SNode current = head;
-        while (current != head){
+        while (current.getNext() != head){
             if (current.getData() > current.getNext().getData()){
                 return false;
             }
@@ -89,12 +112,6 @@ public class CSLL extends SLL{
         }
         return true;
     }
-
-    @Override
-    public void clear(){
-        super.clear();
-        head.setNext(head);
-    }  
 
     @Override
     public void print(){
@@ -127,7 +144,7 @@ public class CSLL extends SLL{
         // Create a new empty list
         System.out.println("Creating a new empty Circular Singly Linked List...\n");
         CSLL list = new CSLL();
-        list.print(); //Output: List length: 0, List is sorted., List content:
+        list.print(); //Output: List length: 0, List is empty
         System.out.println();
 
         // Insert into an empty list
@@ -137,9 +154,73 @@ public class CSLL extends SLL{
         list.print(); //Output: List length: 1, List is sorted., List content: 11
         System.out.println();
 
+        // Do a sequence of insertions
+        System.out.println("Making a sequence of insertions...\n");
         SNode node2 = new SNode(22);
-        list.sortedInsert(node2);
-        list.print(); //Output: List length: 2, List is sorted., List content: 11 22
+        SNode node3 = new SNode(2023);
+        SNode node4 = new SNode(19);
+        SNode node5 = new SNode(712);
 
+        list.insertHead(node2);
+        list.print(); //Output: List length: 2, List is not sorted., List content: 22 11
+        System.out.println();
+
+        list.insertTail(node3);
+        list.print(); //Output: List length: 3, List is not sorted., List content: 22 11 2023
+        System.out.println();
+
+        list.sortedInsert(node4);
+        list.print(); //Output: List length: 4, List is sorted., List content: 11 19 22 2023
+        System.out.println();
+
+        list.insert(node5, 4);
+        list.print(); //Output: List length: 5, List is sorted., List content: 11 19 22 712 2023
+        System.out.println();
+
+        // Fully clear the list by a sequence of deletes
+        System.out.println("Deleting the list...\n");
+        list.delete(node2);
+        list.print(); //Output: List length: 4, List is sorted., List content: 11 19 712 2023
+        System.out.println();
+
+        list.deleteHead();
+        list.print(); //Output: List length: 3, List is sorted., List content: 19 712 2023
+        System.out.println();
+
+        list.deleteTail();
+        list.print(); //Output: List length: 2, List is sorted., List content: 19 712
+        System.out.println();
+
+        list.delete(node5);
+        list.print(); //Output: List length: 1, List is sorted., List content: 19
+        System.out.println();
+
+        list.deleteHead();
+        list.print(); //Output: List length: 0, List is empty.
+        System.out.println();
+
+        // Do another insert to make sure the list is empty again after clearing it
+        System.out.println("Inserting into an empty list again...");
+        SNode node6 = new SNode(77);
+        list.insertHead(node6);
+        list.print(); //Output: List length: 1, List is sorted., List content: 77
+        System.out.println();
+
+        // Searching for a node
+        System.out.println("Updating the list again...\n");
+        SNode node7 = new SNode(7);
+        list.insert(node7, 2);
+        list.print(); // Output: List length: 2, List is sorted., List content: 77 7
+        System.out.println();
+
+        System.out.println("Searching for \"node6\" within the list...\n");
+        int finder = list.search(node6).getData();
+        System.out.println("The search found that node6's data is: " + finder); // Output: 77
+        System.out.println();
+
+        // Checking if the list can be cleared
+        System.out.println("Clearing the list...\n");
+        list.clear();
+        list.print(); // Output: List length: 0, List is empty.
     }
 }

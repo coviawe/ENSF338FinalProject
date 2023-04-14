@@ -53,7 +53,7 @@ public class SLL {
             return;
         }
 
-        if (position == size){
+        if (position == size + 1){
             insertTail(node);
             return;
         }
@@ -135,12 +135,12 @@ public class SLL {
             return;
         }
 
-        if (head.equals(node)){
+        if (head.getData() == node.getData()){
             deleteHead();
             return;
         }
 
-        if (tail.equals(node)){
+        if (tail.getData() == node.getData()){
             deleteTail();
             return;
         }
@@ -247,26 +247,26 @@ public class SLL {
         list.print(); // Output: List length: 4, List is sorted., List content: 2 4 5 8
         System.out.println();
 
-        list.insert(node5, 1);
-        list.print(); //Output List length: 5, List is not sorted., List content: 3 2 4 5 8
+        list.insert(node5, 4);
+        list.print(); //Output List length: 5, List is not sorted., List content: 2 4 5 3 8
         System.out.println();
 
         // Fully clear the list by a sequence of deletes
         System.out.println("Deleting the list...\n");
         list.delete(node2);
-        list.print(); // Output: List length: 4, List is sorted., List content: 3 4 5 6 8
+        list.print(); // Output: List length: 4, List is sorted., List content: 4 5 3 8
         System.out.println();
 
         list.deleteTail();
-        list.print(); // Output: List length: 3, List is sorted., List content: 3 4 5 6
+        list.print(); // Output: List length: 3, List is sorted., List content: 4 5 3
         System.out.println();
 
         list.deleteHead();
-        list.print(); // Output: List length: 2, List is sorted., List content: 4 5 6
+        list.print(); // Output: List length: 2, List is sorted., List content: 5 3
         System.out.println();
 
         list.delete(node1);
-        list.print(); // Output: List length: 1, List is sorted., List content: 4 6
+        list.print(); // Output: List length: 1, List is sorted., List content: 3
         System.out.println();
 
         list.deleteHead();
@@ -288,7 +288,7 @@ public class SLL {
         System.out.println();
 
         System.out.println("Searching for \"node6\" within the list...\n");
-        int finder = list.search(node7).getData();
+        int finder = list.search(node6).getData();
         System.out.println("The search found that node6's data is: " + finder); // Output: 3
         System.out.println();
 
