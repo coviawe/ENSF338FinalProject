@@ -1,6 +1,9 @@
 package myLib.datastructures.trees;
 import myLib.datastructures.nodes.TNode;
 
+import java.util.Queue;
+import java.util.LinkedList;
+
 
 public class BST {
     protected TNode root;
@@ -170,11 +173,9 @@ public class BST {
         return successor;
     }
 
-    /**
- * Prints the elements of the binary search tree in ascending order.
- */
-    public void printTree() {
+    public void printInOrder() {
         inOrderTraversal(root);
+        System.out.println();
     }
 
     private void inOrderTraversal(TNode node) {
@@ -184,6 +185,31 @@ public class BST {
             inOrderTraversal(node.getRight());
         }
     }
+
+    public void printBF() {
+        if (root == null) {
+            return;
+        }
+        Queue<TNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            for (int i = 0; i < levelSize; i++) {
+                TNode currNode = queue.poll();
+                System.out.print(currNode.getData() + " ");
+                if (currNode.getLeft() != null) {
+                    queue.add(currNode.getLeft());
+                }
+                if (currNode.getRight() != null) {
+                    queue.add(currNode.getRight());
+                }
+            }
+            System.out.println();
+        }
+    }
+
+
+
 
    
 
@@ -200,15 +226,19 @@ public class BST {
         bst.insert(9);
         
         // Print the tree
-        System.out.println("BST tree after insertions:");
-        bst.printTree();
+        System.out.println("BST tree after insertions (printInOrder method):");
+        bst.printInOrder();
+        System.out.println("BST tree after insertions (printBF method):");
+        bst.printBF();
         
         // Delete a value
         bst.delete(7);
         
         // Print the tree
-        System.out.println("BST tree after deletion:");
-        bst.printTree();
+        System.out.println("BST tree after deletions (printInOrder method):");
+        bst.printInOrder();
+        System.out.println("BST tree after deletions (printBF method):");
+        bst.printBF();
         
         
     }
