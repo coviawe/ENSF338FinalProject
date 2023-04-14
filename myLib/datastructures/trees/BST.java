@@ -1,6 +1,7 @@
 package myLib.datastructures.trees;
 import myLib.datastructures.nodes.TNode;
 
+
 public class BST {
     protected TNode root;
     
@@ -167,5 +168,48 @@ public class BST {
         }
     
         return successor;
+    }
+
+    /**
+ * Prints the elements of the binary search tree in ascending order.
+ */
+    public void printTree() {
+        inOrderTraversal(root);
+    }
+
+    private void inOrderTraversal(TNode node) {
+        if (node != null) {
+            inOrderTraversal(node.getLeft());
+            System.out.print(node.getData() + " ");
+            inOrderTraversal(node.getRight());
+        }
+    }
+
+   
+
+    public static void main(String[] args) {
+        BST bst = new BST();
+        
+        // Insert some values
+        bst.insert(5);
+        bst.insert(3);
+        bst.insert(1);
+        bst.insert(4);
+        bst.insert(7);
+        bst.insert(6);
+        bst.insert(9);
+        
+        // Print the tree
+        System.out.println("BST tree after insertions:");
+        bst.printTree();
+        
+        // Delete a value
+        bst.delete(7);
+        
+        // Print the tree
+        System.out.println("BST tree after deletion:");
+        bst.printTree();
+        
+        
     }
 }
