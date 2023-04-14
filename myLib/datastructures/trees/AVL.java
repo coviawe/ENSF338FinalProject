@@ -94,4 +94,45 @@ public class AVL extends BST {
         super.delete(val);
         this.root = balance(this.root);
     }
+
+    public void printTree() {
+        inOrderTraversal(root);
+    }
+
+    private void inOrderTraversal(TNode node) {
+        if (node != null) {
+            inOrderTraversal(node.getLeft());
+            System.out.print(node.getData() + " ");
+            inOrderTraversal(node.getRight());
+        }
+    }
+
+    
+   
+
+    public static void main(String[] args) {
+        AVL avl = new AVL();
+        
+        // Insert some values
+        avl.insert(5);
+        avl.insert(3);
+        avl.insert(1);
+        avl.insert(4);
+        avl.insert(7);
+        avl.insert(6);
+        avl.insert(9);
+        
+        // Print the tree
+        System.out.println("AVL tree after insertions:");
+        avl.printTree();
+        
+        // Delete a value
+        avl.delete(7);
+        
+        // Print the tree
+        System.out.println("AVL tree after deletion:");
+        avl.printTree();
+        
+        
+    }
 }
