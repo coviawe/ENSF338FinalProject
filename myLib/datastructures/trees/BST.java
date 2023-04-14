@@ -208,6 +208,20 @@ public class BST {
         }
     }
 
+    public TNode search(int val) {
+        TNode current = root;
+        while (current != null) {
+            if (current.getData() == val) {
+                return current;
+            } else if (current.getData() > val) {
+                current = current.getLeft();
+            } else {
+                current = current.getRight();
+            }
+        }
+        return null;
+    }
+
 
 
 
@@ -225,21 +239,40 @@ public class BST {
         bst.insert(6);
         bst.insert(9);
         
-        // Print the tree
+         // Print the tree
         System.out.println("BST tree after insertions (printInOrder method):");
-        bst.printInOrder();
+        avl.printInOrder();
         System.out.println("BST tree after insertions (printBF method):");
-        bst.printBF();
+        avl.printBF();
+
+        System.out.println("Searching for Node with value of 7");
+        //Check if node 7 exists
+        TNode result = avl.search(7);
+        if (result != null) {
+            System.out.println("Found node with value " + result.getData() + " in BST tree.");
+        } else {
+            System.out.println("Node with this value not found in BST tree.");
+        }
         
+
+        System.out.println("Deleting Node with value of 7");
         // Delete a value
-        bst.delete(7);
+        avl.delete(7);
+
+        System.out.println("Searching for Node with value of 7 again");
+
+        result = avl.search(7);
+        if (result != null) {
+            System.out.println("Found node with value " + result.getData() + " in BST tree.");
+        } else {
+            System.out.println("Node with this value not found in BST tree.");
+        }
         
         // Print the tree
         System.out.println("BST tree after deletions (printInOrder method):");
-        bst.printInOrder();
+        avl.printInOrder();
         System.out.println("BST tree after deletions (printBF method):");
-        bst.printBF();
-        
+        avl.printBF();
         
     }
 }
