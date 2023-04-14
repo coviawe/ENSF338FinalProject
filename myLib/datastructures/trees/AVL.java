@@ -134,6 +134,20 @@ public class AVL extends BST {
         }
     }
 
+    public TNode search(int val) {
+        TNode current = root;
+        while (current != null) {
+            if (current.getData() == val) {
+                return current;
+            } else if (current.getData() > val) {
+                current = current.getLeft();
+            } else {
+                current = current.getRight();
+            }
+        }
+        return null;
+    }
+
 
     
    
@@ -151,18 +165,38 @@ public class AVL extends BST {
         avl.insert(9);
         
          // Print the tree
-        System.out.println("BST tree after insertions (printInOrder method):");
+        System.out.println("AVL tree after insertions (printInOrder method):");
         avl.printInOrder();
-        System.out.println("BST tree after insertions (printBF method):");
+        System.out.println("AVL tree after insertions (printBF method):");
         avl.printBF();
+
+        System.out.println("Searching for Node with value of 7");
+        //Check if node 7 exists
+        TNode result = avl.search(7);
+        if (result != null) {
+            System.out.println("Found node with value " + result.getData() + " in AVL tree.");
+        } else {
+            System.out.println("Node with this value not found in AVL tree.");
+        }
         
+
+        System.out.println("Deleting Node with value of 7");
         // Delete a value
         avl.delete(7);
+
+        System.out.println("Searching for Node with value of 7 again");
+
+        result = avl.search(7);
+        if (result != null) {
+            System.out.println("Found node with value " + result.getData() + " in AVL tree.");
+        } else {
+            System.out.println("Node with this value not found in AVL tree.");
+        }
         
         // Print the tree
-        System.out.println("BST tree after deletions (printInOrder method):");
+        System.out.println("AVL tree after deletions (printInOrder method):");
         avl.printInOrder();
-        System.out.println("BST tree after deletions (printBF method):");
+        System.out.println("AVL tree after deletions (printBF method):");
         avl.printBF();
         
         
