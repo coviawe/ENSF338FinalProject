@@ -82,7 +82,7 @@ public class StackLL extends SLL{
     // Main method for testing our StackLL class
     public static void main(String[] args){
         // Create a new stack
-        System.out.println("Creating a new stack...");
+        System.out.println("Creating a new stack...\n");
         StackLL stack = new StackLL();
         stack.print(); // Output: Stack Length = 0.  Stack is empty.
 
@@ -150,9 +150,9 @@ public class StackLL extends SLL{
         stack.push(node7);
         stack.print(); // Output: Stack Length = 2.  Stack content: Index: 1 | Data: 4 etc...
         
-        System.out.println("Searching for \"node6\" in the stack...\n");
+        System.out.println("Searching for the \"node6\" test object in the stack...\n");
         int finder = stack.search(node6).getData(); // Should return 1
-        System.out.println("The search found that node 6's data is: " + finder);
+        System.out.println("The search found that node6's data is: " + finder);
         System.out.println();
 
         // Checking if the stack can be cleared

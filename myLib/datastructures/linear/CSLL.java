@@ -32,8 +32,19 @@ public class CSLL extends SLL{
 
     @Override
     public void deleteHead(){
-        super.deleteHead();
+        if (head == null){
+            System.out.println("List is empty.");
+            return;
+        }
+        if (head == tail){
+            head = null;
+            tail = null;
+            size = 0;
+            return;
+        }
+        head = head.getNext();
         tail.setNext(head);
+        size--;
     }
 
     @Override
@@ -43,34 +54,11 @@ public class CSLL extends SLL{
     }
 
     @Override
-    public void delete(SNode node){
-        // if (head == null){
-        //     System.out.println("The list is empty.");
-        //     return;
-        // }
-
-        // // if (head.getData() == node.getData()){
-        // //     deleteHead();
-        // //     return;
-        // // }
-
-        // // if (tail.getData() == node.getData()){
-        // //     deleteTail();
-        // //     return;
-        // // }
-
-        // SNode current = head;
-        // while (current.getNext() != head && current.getNext().getData() != node.getData()){
-        //     current = current.getNext();
-
-        //     if (current.getNext().getData() == node.getData()){
-        //         current.setNext(current.getNext().getNext());
-        //         size--;
-        //         return;
-        //     }
-        // }
+    public void delete(SNode node) {
+        super.delete(node);
+        tail.setNext(head);
     }
-
+    
     @Override
     public void sortedInsert(SNode node){
         super.sortedInsert(node);
@@ -179,20 +167,20 @@ public class CSLL extends SLL{
 
         // Fully clear the list by a sequence of deletes
         System.out.println("Deleting the list...\n");
-        list.delete(node2);
-        list.print(); //Output: List length: 4, List is sorted., List content: 11 19 712 2023
+        list.delete(node4);
+        list.print(); //Output: List length: 4, List is sorted., List content: 11 22 712 2023
         System.out.println();
 
         list.deleteHead();
-        list.print(); //Output: List length: 3, List is sorted., List content: 19 712 2023
+        list.print(); //Output: List length: 3, List is sorted., List content: 22 712 2023
         System.out.println();
 
         list.deleteTail();
-        list.print(); //Output: List length: 2, List is sorted., List content: 19 712
+        list.print(); //Output: List length: 2, List is sorted., List content: 22 712
         System.out.println();
 
         list.delete(node5);
-        list.print(); //Output: List length: 1, List is sorted., List content: 19
+        list.print(); //Output: List length: 1, List is sorted., List content: 22
         System.out.println();
 
         list.deleteHead();
@@ -200,7 +188,7 @@ public class CSLL extends SLL{
         System.out.println();
 
         // Do another insert to make sure the list is empty again after clearing it
-        System.out.println("Inserting into an empty list again...");
+        System.out.println("Inserting into an empty list again...\n");
         SNode node6 = new SNode(77);
         list.insertHead(node6);
         list.print(); //Output: List length: 1, List is sorted., List content: 77
@@ -213,7 +201,7 @@ public class CSLL extends SLL{
         list.print(); // Output: List length: 2, List is sorted., List content: 77 7
         System.out.println();
 
-        System.out.println("Searching for \"node6\" within the list...\n");
+        System.out.println("Searching for the \"node6\" test object within the list...\n");
         int finder = list.search(node6).getData();
         System.out.println("The search found that node6's data is: " + finder); // Output: 77
         System.out.println();

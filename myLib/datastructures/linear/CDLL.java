@@ -264,7 +264,7 @@ public class CDLL extends DLL {
         list.print(); // Output: List length: 1, List is sorted., List content: 20
         System.out.println();
 
-        list.deleteHead();
+        list.deleteTail();
         list.print(); // Output: List length: 0, List is empty.
         System.out.println();
 
@@ -282,13 +282,13 @@ public class CDLL extends DLL {
         list.print(); // Output: List length: 2, List is sorted., List content: 77 99
         System.out.println();
 
-        System.out.println("Searching for node 6 within the list ...");
+        System.out.println("Searching for the \"node6\" test object within the list ...\n");
         int finder = list.search(node6).getData();
-        System.out.println("The search found that node 6's data is: " + finder);
+        System.out.println("The search found that node6's data is: " + finder);
         System.out.println();
 
         // Checking id the list can be cleared
-        System.out.println("Clearing the list...");
+        System.out.println("Clearing the list...\n");
         list.clear();
         list.print(); // Output: List length: 0, List is empty.
     }

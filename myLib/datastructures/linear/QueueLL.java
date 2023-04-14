@@ -83,12 +83,12 @@ public class QueueLL extends SLL{
     // Main method for testing our QueueLL class
     public static void main(String[] args){
         // Create a new queue
-        System.out.println("Creating a new queue...");
+        System.out.println("Creating a new queue...\n");
         QueueLL queue = new QueueLL();
         queue.print(); // Output: Queue Length = 0.  Queue is empty.
 
         // Insert (enqueue) into an empty queue
-        System.out.println("Inserting into an empty queue...");
+        System.out.println("Inserting into an empty queue...\n");
         SNode node1 = new SNode(145);
         queue.enqueue(node1);
         queue.print(); // Output: Queue Length = 1. Index: 1 | Data: 145
@@ -113,7 +113,7 @@ public class QueueLL extends SLL{
         queue.print(); // Output: Queue Length = 5. Index: 1 | Data: 145 etc.
 
         // Making a quick peek at the front of the queue
-        System.out.println("Peeking at the front of the queue...");
+        System.out.println("Peeking at the front of the queue...\n");
         SNode temp = queue.peek(); // Should return the node with data 145
         System.out.println("Peeked node data: " + temp.getData() + "\n"); // Output: Peeked node data: 145
 
@@ -151,9 +151,9 @@ public class QueueLL extends SLL{
         queue.enqueue(node7);
         queue.print(); // Output: Queue Length = 2. Index: 1 | Data: 999 etc.
 
-        System.out.println("Searching for \"node6\" in the queue...\n");
+        System.out.println("Searching for the \"node6\" test object in the queue...\n");
         int finder = queue.search(node6).getData(); // Should return 999
-        System.out.println("The search found that node 6's data is: " + finder);
+        System.out.println("The search found that node6's data is: " + finder);
         System.out.println();
 
         // Checking if the queue can be cleared

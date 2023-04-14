@@ -135,26 +135,24 @@ public class SLL {
             return;
         }
 
-        if (head.getData() == node.getData()){
+        if (head.equals(node)){
             deleteHead();
             return;
         }
 
-        if (tail.getData() == node.getData()){
+        if (tail.equals(node)){
             deleteTail();
             return;
         }
 
         SNode current = head;
-        while (current.getNext() != null && !current.getNext().equals(node)){
-            current = current.getNext();
-        }
-        if (current.getNext() != null){
-            current.setNext(current.getNext().getNext());
-            size--;
-            if (current.getNext() == null){
-                tail = current;
+        while (current != null){
+            if (current.getNext().equals(node)){
+                current.setNext(current.getNext().getNext());
+                size--;
+                return;
             }
+            current = current.getNext();
         }
     }
 
@@ -287,7 +285,7 @@ public class SLL {
         list.print(); // Output: List length: 2, List is sorted., List content: 3 7
         System.out.println();
 
-        System.out.println("Searching for \"node6\" within the list...\n");
+        System.out.println("Searching for the \"node6\" test object within the list...\n");
         int finder = list.search(node6).getData();
         System.out.println("The search found that node6's data is: " + finder); // Output: 3
         System.out.println();

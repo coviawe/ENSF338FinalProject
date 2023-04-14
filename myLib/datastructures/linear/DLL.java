@@ -299,7 +299,7 @@ public class DLL {
         list.print(); // Output: List length: 2, List is not sorted., List content: 30 27
         System.out.println();
 
-        System.out.println("Searching for \"node6\" within the list...\n");
+        System.out.println("Searching for the \"node6\" test object within the list...\n");
         int finder = list.search(node6).getData();
         System.out.println("The search found that node6's data is: " + finder);
         System.out.println();
